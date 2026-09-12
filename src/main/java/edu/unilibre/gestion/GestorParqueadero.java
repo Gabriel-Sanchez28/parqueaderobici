@@ -25,4 +25,9 @@ public class GestorParqueadero {
         }
         return false;
     }
+    //registrar salida
+
+    //registrar pago
+
+    //generar reporte
 }
