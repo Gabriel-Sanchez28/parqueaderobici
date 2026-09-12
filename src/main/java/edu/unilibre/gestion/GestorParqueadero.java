@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 
 public class GestorParqueadero {
     private final int cupos = 20;
-    private final double tarifa = 10;
+    private final double tarifa = 10.0;
     private double totalIngresos;
     private int contadorBicicletas;
     private int bicicletasActivas;
@@ -18,7 +18,7 @@ public class GestorParqueadero {
 
     //
 
-    public boolean adicionarBicicleta(int serial, String color, int idPropietario, LocalDateTime horaEntrada) {
+    public boolean adicionarBicicleta(int serial, String color, int idPropietario) {
         boolean registroBici = false;
         if (bicicletasActivas >= cupos) {
             return registroBici;
@@ -26,7 +26,7 @@ public class GestorParqueadero {
         for (int i = 0; i < listaBicicletas.length; i++) {
             if (listaBicicletas[i] == null) {
                 Propietario propietario = new Propietario(idPropietario, null);
-                horaEntrada = LocalDateTime.now();
+                LocalDateTime horaEntrada = LocalDateTime.now();
                 listaBicicletas[i] = new Bicicleta(serial, color, propietario, horaEntrada);
 
                 contadorBicicletas++;
@@ -38,21 +38,25 @@ public class GestorParqueadero {
         return registroBici;
     }
     //registrar salida
-    public boolean registrarSalida(int idpropietario, LocalDateTime horaEntrada, double tarifa){
+    public boolean registrarSalida(int idpropietario){
         horaSalida = LocalDateTime.now();
         boolean regisSalida = false;
         for (int i = 0; i < listaBicicletas.length; i++) {
-            if (listaBicicletas[i].recibirIdpropietario().recibirIdentificacion() ==  idpropietario) {
-                Bicicleta salida = listaBicicletas[i];
-                Duration duracion = Duration.between(horaEntrada, horaSalida);
-                long minutosTotales = duracion.toMinutes();
-                listaBicicletas[i] = null;
-                double valorPagar = minutosTotales * tarifa;
-                totalIngresos = totalIngresos + valorPagar;
-                regisSalida = true;
+            if (listaBicicletas[i] != null) {
+                if (listaBicicletas[i].recibirIdpropietario().recibirIdentificacion() == idpropietario) {
+                    Bicicleta salida = listaBicicletas[i];
+                    LocalDateTime horaEntrada = listaBicicletas[i].recibirHoraEntrada();
+                    Duration duracion = Duration.between(horaEntrada, horaSalida);
+                    long minutosTotales = duracion.toMinutes();
+                    listaBicicletas[i] = null;
+                    double valorPagar = minutosTotales * tarifa;
+                    totalIngresos = totalIngresos + valorPagar;
+                    regisSalida = true;
+                    return  regisSalida;
+                }
             }
         }
-        return false;
+        return regisSalida;
     }
     //registrar pago
 

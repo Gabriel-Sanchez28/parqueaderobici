@@ -20,7 +20,7 @@ public class Propietario {
         this.nombre = nombre;
     }
 
-    public Propietario (int idPropietario, String nombre){
+    public Propietario (int identificacion, String nombre){
         this.identificacion = identificacion;
         this.nombre = this.nombre;
     }
