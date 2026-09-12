@@ -71,6 +71,7 @@ public class GestorParqueadero {
                     long minutosTotales = duracion.toMinutes();
                     listaBicicletas[i] = null;
                     double valorPagar = minutosTotales * tarifa;
+                    System.out.println("El valor a pagar es de: " + valorPagar);
                     totalIngresos = totalIngresos + valorPagar;
                     regisSalida = true;
                     return  regisSalida;
