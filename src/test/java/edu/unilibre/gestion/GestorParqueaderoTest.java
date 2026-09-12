@@ -17,34 +17,41 @@ class GestorParqueaderoTest {
         servicio = new GestorParqueadero();
     }
 
+    //adicionar bicicleta con espacios libre
     @Test
     void adicionarBicicletaLibreTest() {
         boolean resultado = servicio.adicionarBicicleta(123, "amarillo", 123);
         assertEquals(true, resultado, "La bicleta no se pudo asignar");
     }
 
+    //adicionar bicicleta con parametros nulos
     @Test
     void adicionarBicicletaNulosTest() {
         boolean resultado = servicio.adicionarBicicleta(0, "amarillo", 123);
-        assertEquals(false, resultado);
+        assertEquals(false, resultado, "el serial debe tener datos erroneos");
         boolean resultado2 = servicio.adicionarBicicleta(123, null, 123);
-        assertEquals(false, resultado2);
-        boolean resultado3 = servicio.adicionarBicicleta(123, "amarillo", 0);
-        assertEquals(false, resultado3);
+        assertEquals(false, resultado2, "el color debe estar nulo");
+        boolean resultado3 = servicio.adicionarBicicleta(123, "", 123);
+        assertEquals(false, resultado2, "el color debe estar vacio");
+        boolean resultado4 = servicio.adicionarBicicleta(123, "amarillo", 0);
+        assertEquals(false, resultado3, "la identificacion del propietario debe tener datos erroneos");
     }
 
+    //adicionar bicicleta con parqueadero lleno
     @Test
     void adicionarBicicletaLlenoTest() {
         // Llenar exactamente los 20 cupos del parqueadero limpio
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < 21; i++) {
             servicio.adicionarBicicleta(i, "color", 100 + i);
         }
 
         // Intentar agregar la bicicleta número 21
-        boolean resultado2 = servicio.adicionarBicicleta(999, "rojo", 999);
+        boolean resultado = servicio.adicionarBicicleta(999, "rojo", 999);
 
-        assertEquals(false,resultado2, "El parqueadero debería estar lleno y retornar false");
+        assertEquals(false,resultado, "El parqueadero debería estar lleno");
     }
+
+    //sacar bicicleta registrada
     @Test
     //public boolean registrarSalida(int idpropietario, double tarifa)
     void registrarSalidaTest(){
@@ -54,13 +61,24 @@ class GestorParqueaderoTest {
         boolean resultado = this.servicio.registrarSalida(123);
         assertEquals(true, resultado, "La cicla no esta registrada");
     }
+
+    //sacar bicicleta que no existe
     @Test
         //public boolean registrarSalida(int idpropietario, double tarifa)
     void registrarSalidaIdNuloTest(){
-        //registro
-        boolean bicicleta = this.servicio.adicionarBicicleta(124, "amarillo", 0);
 
         boolean resultado = this.servicio.registrarSalida(0);
-        assertEquals(false, resultado, "La cicla no esta registrada");
+        assertEquals(false, resultado, "La cicla no debe estar registrada");
+    }
+
+    //sacar bicicleta id no coincidentes
+    @Test
+    void registrarSalidaIdNoCoincideTest() {
+        this.servicio.adicionarBicicleta(1, "rojo", 123);
+
+        // 2. Intentamos sacarla buscando con un ID totalmente diferente (ej. 999)
+        boolean resultado = this.servicio.registrarSalida(999);
+
+        assertFalse(resultado, "Las identificaciones no deben coincidir");
     }
 }
