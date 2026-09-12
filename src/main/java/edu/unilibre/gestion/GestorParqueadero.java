@@ -20,7 +20,19 @@ public class GestorParqueadero {
 
     public boolean adicionarBicicleta(int serial, String color, int idPropietario) {
         boolean registroBici = false;
+        //verificacion datos ingresados
         if (bicicletasActivas >= cupos) {
+            System.out.println("Los cupos estan llenos");
+            return registroBici;
+        }
+        if (serial<=0){
+            System.out.println("Ingrese un serial valido");
+            return registroBici;
+        } else if (color == null || color == "") {
+            System.out.println("Ingrese un color valido");
+            return registroBici;
+        } else if (idPropietario <= 0){
+            System.out.println("Ingrese una identificación valida");
             return registroBici;
         }
         for (int i = 0; i < listaBicicletas.length; i++) {
@@ -41,6 +53,10 @@ public class GestorParqueadero {
     public boolean registrarSalida(int idpropietario){
         horaSalida = LocalDateTime.now();
         boolean regisSalida = false;
+        if (idpropietario <= 0){
+            System.out.println("Ingrese una identificacion valida");
+            return regisSalida = false;
+        }
         for (int i = 0; i < listaBicicletas.length; i++) {
             if (listaBicicletas[i] != null) {
                 if (listaBicicletas[i].recibirIdpropietario().recibirIdentificacion() == idpropietario) {

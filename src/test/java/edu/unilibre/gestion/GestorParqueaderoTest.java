@@ -24,6 +24,16 @@ class GestorParqueaderoTest {
     }
 
     @Test
+    void adicionarBicicletaNulosTest() {
+        boolean resultado = servicio.adicionarBicicleta(0, "amarillo", 123);
+        assertEquals(false, resultado);
+        boolean resultado2 = servicio.adicionarBicicleta(123, null, 123);
+        assertEquals(false, resultado2);
+        boolean resultado3 = servicio.adicionarBicicleta(123, "amarillo", 0);
+        assertEquals(false, resultado3);
+    }
+
+    @Test
     void adicionarBicicletaLlenoTest() {
         // Llenar exactamente los 20 cupos del parqueadero limpio
         for (int i = 0; i < 20; i++) {
@@ -43,5 +53,14 @@ class GestorParqueaderoTest {
 
         boolean resultado = this.servicio.registrarSalida(123);
         assertEquals(true, resultado, "La cicla no esta registrada");
+    }
+    @Test
+        //public boolean registrarSalida(int idpropietario, double tarifa)
+    void registrarSalidaIdNuloTest(){
+        //registro
+        boolean bicicleta = this.servicio.adicionarBicicleta(124, "amarillo", 0);
+
+        boolean resultado = this.servicio.registrarSalida(0);
+        assertEquals(false, resultado, "La cicla no esta registrada");
     }
 }
