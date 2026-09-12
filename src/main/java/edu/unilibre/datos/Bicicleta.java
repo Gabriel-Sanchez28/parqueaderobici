@@ -3,7 +3,7 @@ package edu.unilibre.datos;
 public class Bicicleta {
     private int serial;
     private String color;
-    private Propietario idpropietario;
+    private Propietario idPropietario;
 
     public int getSerial() {
         return serial;
@@ -14,7 +14,7 @@ public class Bicicleta {
     }
 
     public Propietario getIdpropietario() {
-        return idpropietario;
+        return idPropietario;
     }
 
     public void setSerial(int serial) {
@@ -26,12 +26,12 @@ public class Bicicleta {
     }
 
     public void setIdpropietario(Propietario idpropietario) {
-        this.idpropietario = idpropietario;
+        this.idPropietario = idpropietario;
     }
 
     public Bicicleta (int serial, String color, Propietario idpropietario){
         this.serial = serial;
         this.color = color;
-        this.idpropietario = idpropietario;
+        this.idPropietario = idpropietario;
     }
 }

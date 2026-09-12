@@ -20,8 +20,8 @@ public class Propietario {
         this.nombre = nombre;
     }
 
-    public Propietario (int identificacion, String nombre){
+    public Propietario (int idPropietario, String nombre){
         this.identificacion = identificacion;
-        this.nombre = nombre;
+        this.nombre = this.nombre;
     }
 }
