@@ -1,37 +1,46 @@
 package edu.unilibre.datos;
 
+import java.time.LocalDateTime;
+
 public class Bicicleta {
     private int serial;
     private String color;
     private Propietario idPropietario;
+    private LocalDateTime horaEntrada;
 
-    public int getSerial() {
+    public int recibirSerial() {
         return serial;
     }
 
-    public String getColor() {
+    public String recibirColor() {
         return color;
     }
 
-    public Propietario getIdpropietario() {
+    public Propietario recibirIdpropietario() {
         return idPropietario;
     }
 
-    public void setSerial(int serial) {
+    public LocalDateTime recibirHoraEntrada() {
+        return horaEntrada;
+    }
+
+    public void modificarSerial(int serial) {
         this.serial = serial;
     }
 
-    public void setColor(String color) {
+    public void modificarColor(String color) {
         this.color = color;
     }
 
-    public void setIdpropietario(Propietario idpropietario) {
+    public void modificarIdpropietario(Propietario idpropietario) {
         this.idPropietario = idpropietario;
     }
 
-    public Bicicleta (int serial, String color, Propietario idpropietario){
+
+    public Bicicleta (int serial, String color, Propietario idpropietario, LocalDateTime horaEntrada){
         this.serial = serial;
         this.color = color;
         this.idPropietario = idpropietario;
+        this.horaEntrada = horaEntrada;
     }
 }
