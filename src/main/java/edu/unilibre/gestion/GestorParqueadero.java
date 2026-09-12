@@ -17,7 +17,7 @@ public class GestorParqueadero {
         }
         for (int i = 0; i < listaBicicletas.length; i++){
             if (listaBicicletas[i] == null) {
-                Propietario propietario = new Propietario(idPropietario, "");
+                Propietario propietario = new Propietario(idPropietario, null);
                 contadorBicicletas++;
                 bicicletasActivas++;
                 return true;
