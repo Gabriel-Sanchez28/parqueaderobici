@@ -24,6 +24,7 @@ public class Bicicleta {
         return horaEntrada;
     }
 
+
     public void modificarSerial(int serial) {
         this.serial = serial;
     }
