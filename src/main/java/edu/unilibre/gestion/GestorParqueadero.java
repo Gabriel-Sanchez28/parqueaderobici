@@ -6,7 +6,6 @@ import edu.unilibre.datos.Propietario;
 import java.time.Duration;
 import java.time.LocalDateTime;
 
-
 public class GestorParqueadero {
     private final int cupos = 20;
     private final double tarifa = 10.0;
@@ -14,7 +13,7 @@ public class GestorParqueadero {
     private int contadorBicicletas;
     private int bicicletasActivas;
     private Bicicleta[] listaBicicletas = new Bicicleta[cupos];
-    private Pago pago;
+    //private Pago pago;
     private LocalDateTime horaSalida;
 
     //registrar bicicleta
