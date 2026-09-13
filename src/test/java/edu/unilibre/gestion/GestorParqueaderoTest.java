@@ -95,4 +95,11 @@ class GestorParqueaderoTest {
         // Validar que el reporte contenga los datos esperados
         assertNotNull(reporte, "El reporte no debe ser nulo");
     }
+    
+    @Test
+    void opcionesPagoTest(){
+        assertDoesNotThrow(() -> {
+            this.servicio.opcionesPago();
+        }, "El método de opciones de pago debe ejecutarse sin fallar");
+    }
 }

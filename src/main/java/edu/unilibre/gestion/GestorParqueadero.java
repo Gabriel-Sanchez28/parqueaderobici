@@ -107,4 +107,11 @@ public class GestorParqueadero {
                 "Total de ingresos realizados " + totalIngresos;
         return reporte;
     }
+
+    public void opcionesPago(){
+        System.out.println("|           Opciones de Pago          |");
+        for (Pago pago : Pago.values()){
+            System.out.println("- "+ pago);
+        }
+    }
 }
