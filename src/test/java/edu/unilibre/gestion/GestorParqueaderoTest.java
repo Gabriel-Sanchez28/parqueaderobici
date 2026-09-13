@@ -58,19 +58,19 @@ class GestorParqueaderoTest {
     //public boolean registrarSalida(int idpropietario, double tarifa)
     void registrarSalidaTest(){
         //registro
-        boolean bicicleta = this.servicio.adicionarBicicleta(124, "amarillo", 123);
+        this.servicio.adicionarBicicleta(124, "amarillo", 123);
         boolean resultado = this.servicio.registrarSalida(123, Pago.NEQUI);
         assertEquals(true, resultado, "La cicla no esta registrada");
     }
 
-    //sacar bicicleta que no existe
+    //sacar bicicleta valores nulos
     @Test
-        //public boolean registrarSalida(int idpropietario, double tarifa)
     void registrarSalidaIdNuloTest(){
-
+        //sacar bicicleta que no existe
         boolean resultado = this.servicio.registrarSalida(0, Pago.NEQUI);
         assertEquals(false, resultado, "La cicla no debe estar registrada");
 
+        //Pago no nulo
         boolean resultado2 = this.servicio.registrarSalida(123, null);
         assertEquals(false, resultado2, "El pago no debe ser valido");
     }
@@ -83,5 +83,16 @@ class GestorParqueaderoTest {
         boolean resultado = this.servicio.registrarSalida(999, Pago.NEQUI);
 
         assertFalse(resultado, "Las identificaciones no deben coincidir");
+    }
+
+    @Test
+    void generarReporteTest() {
+        servicio.adicionarBicicleta(102, "Azul", 456);
+        this.servicio.registrarSalida(456,Pago.NEQUI);
+        String reporte = servicio.generarReporte();
+        System.out.println(reporte);
+
+        // Validar que el reporte contenga los datos esperados
+        assertNotNull(reporte, "El reporte no debe ser nulo");
     }
 }
