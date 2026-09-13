@@ -99,7 +99,12 @@ public class GestorParqueadero {
         }
         return regisSalida;
     }
-    //registrar pago
 
     //generar reporte
+    public String generarReporte(){
+        String reporte = "--- REPORTE DEL PARQUEADERO ---\n" +
+                "Total de bicicletas ingresadas en el día " + contadorBicicletas + "\n" +
+                "Total de ingresos realizados " + totalIngresos;
+        return reporte;
+    }
 }
