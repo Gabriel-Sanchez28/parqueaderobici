@@ -65,6 +65,11 @@ public class Ventana {
                 if (sacar == false){
                     System.out.println("No se encontro ninguna bicicleta registrada, verifica el documento ingresado");
                 }
+                break;
+            case 3:
+                String reporte= gestor.generarReporte();
+                System.out.println(reporte);
+                break;
         }
     }
 }
