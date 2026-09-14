@@ -108,7 +108,7 @@ public class GestorParqueadero {
         return reporte;
     }
 
-    public void opcionesPago(){
+    public void metodoPago(){
         System.out.println("|           Opciones de Pago          |");
         for (Pago pago : Pago.values()){
             System.out.println("- "+ pago);

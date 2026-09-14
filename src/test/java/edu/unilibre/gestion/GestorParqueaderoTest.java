@@ -97,9 +97,9 @@ class GestorParqueaderoTest {
     }
     
     @Test
-    void opcionesPagoTest(){
+    void metodoPagoTest(){
         assertDoesNotThrow(() -> {
-            this.servicio.opcionesPago();
+            this.servicio.metodoPago();
         }, "El método de opciones de pago debe ejecutarse sin fallar");
     }
 }
