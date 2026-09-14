@@ -116,10 +116,10 @@ public class GestorParqueadero {
             System.out.println(i + ". " + pago);
         }
     }
-    public Pago pagarSeleccionado(int opcion){
+    public Pago seleccionarPago(int opcion){
         Pago[] opciones = Pago.values();
-        for (int i=1; i <= opciones.length;i++){
-            if (i == opcion){
+        for (int i=0; i <= opciones.length;i++){
+            if (i == opcion-1){
                 return opciones[i];
             }
         }

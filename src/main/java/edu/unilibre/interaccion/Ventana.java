@@ -9,9 +9,9 @@ public class Ventana {
         int opcion = 0;
         int retorno = 0;
         do {
+            GestorParqueadero gestor = new GestorParqueadero();
             while (retorno == 0) {
                 Scanner teclado = new Scanner(System.in);
-                GestorParqueadero gestor = new GestorParqueadero();
 
                 System.out.println("-------------------------------------------------");
                 System.out.println("|        Menu Parqueadero de Bicicletas         |");
@@ -54,7 +54,6 @@ public class Ventana {
                             } catch (InterruptedException e) {
                                 throw new RuntimeException(e);
                             }
-
                         }
                         System.out.println("");
                         break;
@@ -63,23 +62,39 @@ public class Ventana {
                         int idRegistrada = teclado.nextInt();
                         teclado.nextLine();
                         gestor.metodoPago();
-                        System.out.println("Ingrese un metodo de pago tal cual como esta escrito: ");
-                        String pago = teclado.nextLine();
-                        Pago pagar = null;
-                        try {
-                            pagar = Pago.valueOf(pago);
-                        } catch (IllegalArgumentException e) {
-                            boolean sacar = gestor.registrarSalida(idRegistrada, null);
-                        }
+                        System.out.println("Seleccione un metodo de pago: ");
+                        Pago pago = gestor.seleccionarPago(teclado.nextInt());
 
-                        boolean sacar = gestor.registrarSalida(idRegistrada, pagar);
+                        boolean sacar = gestor.registrarSalida(idRegistrada, pago);
                         if (sacar == false) {
                             System.out.println("Ocurrio un error, verifica los datos ingresados");
                         }
+                        for (int i = 5; i>=0; i--){
+                            // \r vuelve al inicio de la línea y sobreescribe lo que estaba antes
+                            System.out.print("\rVolviendo al menu inicial en " + i);
+                            System.out.flush();
+                            try {
+                                Thread.sleep(1000);
+                            } catch (InterruptedException e) {
+                                throw new RuntimeException(e);
+                            }
+                        }
+                        System.out.println("");
                         break;
                     case 3:
                         String reporte = gestor.generarReporte();
                         System.out.println(reporte);
+                        for (int i = 5; i>=0; i--){
+                            // \r vuelve al inicio de la línea y sobreescribe lo que estaba antes
+                            System.out.print("\rVolviendo al menu inicial en " + i);
+                            System.out.flush();
+                            try {
+                                Thread.sleep(1000);
+                            } catch (InterruptedException e) {
+                                throw new RuntimeException(e);
+                            }
+                        }
+                        System.out.println("");
                         break;
                     case 4:
                         System.out.println("Gracias por usar nuestros servicios");

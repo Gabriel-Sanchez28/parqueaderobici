@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
 
+import static edu.unilibre.datos.Pago.NEQUI;
 import static org.junit.jupiter.api.Assertions.*;
 
 class GestorParqueaderoTest {
@@ -59,7 +60,7 @@ class GestorParqueaderoTest {
     void registrarSalidaTest(){
         //registro
         this.servicio.adicionarBicicleta(124, "amarillo", 123);
-        boolean resultado = this.servicio.registrarSalida(123, Pago.NEQUI);
+        boolean resultado = this.servicio.registrarSalida(123, NEQUI);
         assertEquals(true, resultado, "La cicla no esta registrada");
     }
 
@@ -67,7 +68,7 @@ class GestorParqueaderoTest {
     @Test
     void registrarSalidaIdNuloTest(){
         //sacar bicicleta que no existe
-        boolean resultado = this.servicio.registrarSalida(0, Pago.NEQUI);
+        boolean resultado = this.servicio.registrarSalida(0, NEQUI);
         assertEquals(false, resultado, "La cicla no debe estar registrada");
 
         //Pago no nulo
@@ -80,7 +81,7 @@ class GestorParqueaderoTest {
     void registrarSalidaIdNoCoincideTest() {
         this.servicio.adicionarBicicleta(1, "rojo", 123);
 
-        boolean resultado = this.servicio.registrarSalida(999, Pago.NEQUI);
+        boolean resultado = this.servicio.registrarSalida(999, NEQUI);
 
         assertFalse(resultado, "Las identificaciones no deben coincidir");
     }
@@ -88,7 +89,7 @@ class GestorParqueaderoTest {
     @Test
     void generarReporteTest() {
         servicio.adicionarBicicleta(102, "Azul", 456);
-        this.servicio.registrarSalida(456,Pago.NEQUI);
+        this.servicio.registrarSalida(456, NEQUI);
         String reporte = servicio.generarReporte();
         System.out.println(reporte);
 
@@ -101,5 +102,12 @@ class GestorParqueaderoTest {
         assertDoesNotThrow(() -> {
             this.servicio.metodoPago();
         }, "El método de opciones de pago debe ejecutarse sin fallar");
+    }
+
+    @Test
+    void seleccionPagoTest(){
+        int opcion = 1;
+        Pago pagoSeleccionado = this.servicio.seleccionarPago(1);
+        assertEquals(NEQUI, pagoSeleccionado);
     }
 }
