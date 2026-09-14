@@ -51,6 +51,20 @@ public class Ventana {
                 Propietario propietario = new Propietario(id, nombre);
                 boolean agregar = gestor.adicionarBicicleta(serial, color, propietario.recibirIdentificacion());
                 System.out.println("!Bicicleta registrada exitosamente¡");
+                break;
+            case 2:
+                System.out.println("Ingrese su numero de identificacion");
+                int idRegistrada = teclado.nextInt();
+                teclado.nextLine();
+                gestor.metodoPago();
+                System.out.println("Ingrese un metodo de pago tal cual como esta escrito: ");
+                String pago = teclado.nextLine();
+                Pago pagar = Pago.valueOf(pago);
+
+                boolean sacar = gestor.registrarSalida(idRegistrada,pagar);
+                if (sacar == false){
+                    System.out.println("No se encontro ninguna bicicleta registrada, verifica el documento ingresado");
+                }
         }
     }
 }
