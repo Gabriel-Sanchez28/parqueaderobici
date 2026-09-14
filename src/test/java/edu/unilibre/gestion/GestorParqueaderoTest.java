@@ -106,8 +106,13 @@ class GestorParqueaderoTest {
 
     @Test
     void seleccionPagoTest(){
-        int opcion = 1;
         Pago pagoSeleccionado = this.servicio.seleccionarPago(1);
         assertEquals(NEQUI, pagoSeleccionado);
+    }
+
+    @Test
+    void seleccionPagoErroneoTest(){
+        Pago pagoSeleccionado = this.servicio.seleccionarPago(-5);
+        assertNotEquals(NEQUI, pagoSeleccionado);
     }
 }

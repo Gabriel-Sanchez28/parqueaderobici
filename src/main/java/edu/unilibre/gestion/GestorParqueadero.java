@@ -118,6 +118,9 @@ public class GestorParqueadero {
     }
     public Pago seleccionarPago(int opcion){
         Pago[] opciones = Pago.values();
+        if (opcion<0){
+            System.out.println("La opcion no es valida");
+        }
         for (int i=0; i <= opciones.length;i++){
             if (i == opcion-1){
                 return opciones[i];
