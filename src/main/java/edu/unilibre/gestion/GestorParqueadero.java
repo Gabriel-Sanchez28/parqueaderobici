@@ -71,9 +71,9 @@ public class GestorParqueadero {
                     Bicicleta salida = listaBicicletas[i];
 
                     //contenedor de hora entrada verdadero
-                    //LocalDateTime horaEntrada = listaBicicletas[i].recibirHoraEntrada();
+                    LocalDateTime horaEntrada = listaBicicletas[i].recibirHoraEntrada();
                     //hora de entrada prueba
-                    LocalDateTime horaEntrada = LocalDateTime.of(2026,9,12, 11, 30);
+                    //LocalDateTime horaEntrada = LocalDateTime.of(2026,9,12, 11, 30);
                     Duration duracion = Duration.between(horaEntrada, horaSalida);
                     long minutosTotales = duracion.toMinutes();
 
