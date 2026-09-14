@@ -13,7 +13,6 @@ public class GestorParqueadero {
     private int contadorBicicletas;
     private int bicicletasActivas;
     private Bicicleta[] listaBicicletas = new Bicicleta[cupos];
-    //private Pago pago;
     private LocalDateTime horaSalida;
 
     //registrar bicicleta
