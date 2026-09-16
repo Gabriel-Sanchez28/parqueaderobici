@@ -49,6 +49,7 @@ public class Ventana {
                         boolean agregar = gestor.adicionarBicicleta(serial, color, propietario.recibirIdentificacion());
                         if (agregar==false){
                             System.out.println("!No se pudo agregar la bicicleta, intenta de nuevo¡");
+                            break;
                         }
                         System.out.println("");
                         System.out.println("!Bicicleta registrada exitosamente¡");
