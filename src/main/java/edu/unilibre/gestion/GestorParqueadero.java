@@ -32,6 +32,18 @@ public class GestorParqueadero {
             System.out.println("Ingrese una identificación valida");
             return registroBici;
         }
+        for (int i=0; i<listaBicicletas.length;i++){
+            if (listaBicicletas[i]!=null){
+                if (listaBicicletas[i].recibirSerial()==serial){
+                    System.out.println("Este serial ya esta registrado");
+                    return registroBici;
+                }
+                if (listaBicicletas[i].recibirIdpropietario().recibirIdentificacion()==idPropietario){
+                    System.out.println("Esta identificación ya fue registrada");
+                    return registroBici;
+                }
+            }
+        }
 
         for (int i = 0; i < listaBicicletas.length; i++) {
             if (listaBicicletas[i] == null) {

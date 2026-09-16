@@ -47,6 +47,9 @@ public class Ventana {
                         int id = teclado.nextInt();
                         Propietario propietario = new Propietario(id, nombre);
                         boolean agregar = gestor.adicionarBicicleta(serial, color, propietario.recibirIdentificacion());
+                        if (agregar==false){
+                            System.out.println("!No se pudo agregar la bicicleta, intenta de nuevo¡");
+                        }
                         System.out.println("");
                         System.out.println("!Bicicleta registrada exitosamente¡");
                         for (int i = 5; i>=0; i--){
