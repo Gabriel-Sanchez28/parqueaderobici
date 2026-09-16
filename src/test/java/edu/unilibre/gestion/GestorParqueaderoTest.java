@@ -3,6 +3,7 @@ package edu.unilibre.gestion;
 import edu.unilibre.datos.Bicicleta;
 import edu.unilibre.datos.Color;
 import edu.unilibre.datos.Pago;
+import edu.unilibre.datos.RegistroPago;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -59,20 +60,20 @@ class GestorParqueaderoTest {
     void registrarSalidaTest(){
         //registro
         this.servicio.adicionarBicicleta(124, Color.AZUL, 123);
-        boolean resultado = this.servicio.registrarSalida(123, NEQUI);
-        assertEquals(true, resultado, "La cicla no esta registrada");
+        RegistroPago resultado = this.servicio.registrarSalida(123, NEQUI);
+        assertNotNull(resultado, "La cicla no esta registrada");
     }
 
     //sacar bicicleta valores nulos
     @Test
     void registrarSalidaIdNuloTest(){
         //sacar bicicleta que no existe
-        boolean resultado = this.servicio.registrarSalida(0, NEQUI);
-        assertEquals(false, resultado, "La cicla no debe estar registrada");
+        RegistroPago resultado = this.servicio.registrarSalida(0, NEQUI);
+        assertNull( resultado, "La cicla no debe estar registrada");
 
         //Pago no nulo
-        boolean resultado2 = this.servicio.registrarSalida(123, null);
-        assertEquals(false, resultado2, "El pago no debe ser valido");
+        RegistroPago resultado2 = this.servicio.registrarSalida(123, null);
+        assertNull( resultado2, "El pago no debe ser valido");
     }
 
     //sacar bicicleta id no coincidentes
@@ -80,9 +81,9 @@ class GestorParqueaderoTest {
     void registrarSalidaIdNoCoincideTest() {
         this.servicio.adicionarBicicleta(1, Color.AZUL, 123);
 
-        boolean resultado = this.servicio.registrarSalida(999, NEQUI);
+        RegistroPago resultado = this.servicio.registrarSalida(999, NEQUI);
 
-        assertFalse(resultado, "Las identificaciones no deben coincidir");
+        assertNull(resultado, "Las identificaciones no deben coincidir");
     }
 
     @Test

@@ -1,9 +1,7 @@
 package edu.unilibre.gestion;
 
-import edu.unilibre.datos.Bicicleta;
-import edu.unilibre.datos.Color;
-import edu.unilibre.datos.Pago;
-import edu.unilibre.datos.Propietario;
+import edu.unilibre.datos.*;
+
 import java.time.Duration;
 import java.time.LocalDateTime;
 
@@ -52,34 +50,35 @@ public class GestorParqueadero {
     }
 
     //registrar salida
-    public boolean registrarSalida(int idpropietario, Pago pago) {
+    public RegistroPago registrarSalida(int idpropietario, Pago pago) {
         horaSalida = LocalDateTime.now();
-        boolean regisSalida = false;
+        RegistroPago registro = null;
 
         //validacion de parametros
         if (idpropietario <= 0){
             System.out.println("Ingrese una identificacion valida");
-            return regisSalida = false;
+            return null;
         }
         if (pago == null) {
             System.out.println("Debe seleccionar un método de pago válido");
-            return regisSalida = false;
+            return null;
         }
 
         for (int i = 0; i < listaBicicletas.length; i++) {
             if (listaBicicletas[i] != null) {
                 if (listaBicicletas[i].recibirIdpropietario().recibirIdentificacion() == idpropietario) {
                     Bicicleta salida = listaBicicletas[i];
-
+                    Propietario idPropietario = listaBicicletas[i].recibirIdpropietario();
                     //contenedor de hora entrada verdadero
-                    //LocalDateTime horaEntrada = listaBicicletas[i].recibirHoraEntrada();
+                    LocalDateTime horaEntrada = listaBicicletas[i].recibirHoraEntrada();
                     //hora de entrada prueba
-                    LocalDateTime horaEntrada = LocalDateTime.of(2026,9,12, 11, 30);
+                    //LocalDateTime horaEntrada = LocalDateTime.of(2026,9,12, 11, 30);
                     Duration duracion = Duration.between(horaEntrada, horaSalida);
                     long minutosTotales = duracion.toMinutes();
 
                     double valorPagar = minutosTotales * tarifa;
-                    System.out.println("La biccileta se registro correctamente");
+                    registro =new RegistroPago(idPropietario, horaEntrada, horaSalida, pago, valorPagar);
+                    /*System.out.println("La biccileta se registro correctamente");
                     System.out.println("-------- Factura ----------");
                     //System.out.println("Propietario " + listaBicicletas[i].recibirIdpropietario().recibirNombre());
                     System.out.println("Identificacion " + listaBicicletas[i].recibirIdpropietario().recibirIdentificacion());
@@ -88,16 +87,16 @@ public class GestorParqueadero {
                     System.out.println("Metodo de pago: " + pago);
                     System.out.println("Duracion " + minutosTotales);
                     System.out.println("El valor a pagar es de: " + valorPagar);
-                    System.out.println("----------------------------------");
+                    System.out.println("----------------------------------");*/
 
                     bicicletasActivas--;
                     listaBicicletas[i] = null;
                     totalIngresos = totalIngresos + valorPagar;
-                    return  regisSalida = true;
+                    return  registro;
                 }
             }
         }
-        return regisSalida;
+        return registro;
     }
 
     //generar reporte
