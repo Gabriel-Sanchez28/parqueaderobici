@@ -1,6 +1,7 @@
 package edu.unilibre.gestion;
 
 import edu.unilibre.datos.Bicicleta;
+import edu.unilibre.datos.Color;
 import edu.unilibre.datos.Pago;
 import edu.unilibre.datos.Propietario;
 import java.time.Duration;
@@ -16,7 +17,7 @@ public class GestorParqueadero {
     private LocalDateTime horaSalida;
 
     //registrar bicicleta
-    public boolean adicionarBicicleta(int serial, String color, int idPropietario) {
+    public boolean adicionarBicicleta(int serial, Color color, int idPropietario) {
         boolean registroBici = false;
         //verificacion datos ingresados
         if (bicicletasActivas >= cupos) {
@@ -26,7 +27,7 @@ public class GestorParqueadero {
         if (serial<=0){
             System.out.println("Ingrese un serial valido");
             return registroBici;
-        } else if (color == null || color == "") {
+        } else if (color == null) {
             System.out.println("Ingrese un color valido");
             return registroBici;
         } else if (idPropietario <= 0){
@@ -105,6 +106,27 @@ public class GestorParqueadero {
                 "Total de bicicletas ingresadas en el día " + contadorBicicletas + "\n" +
                 "Total de ingresos realizados " + totalIngresos;
         return reporte;
+    }
+    public void listarColores(){
+        System.out.println("|           Opciones de Color          |");
+        int i= 0;
+        for (Color color : Color.values()){
+            i++;
+            System.out.println(i + ". " + color);
+        }
+    }
+
+    public Color seleccionarColor(int color){
+        Color[] colores = Color.values();
+        if (color<0){
+            System.out.println("El color no es valido");
+        }
+        for (int i=0; i <= colores.length;i++){
+            if (i == color-1){
+                return colores[i];
+            }
+        }
+        return null;
     }
 
     public void metodoPago(){

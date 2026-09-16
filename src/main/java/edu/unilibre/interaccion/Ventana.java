@@ -1,4 +1,5 @@
 package edu.unilibre.interaccion;
+import edu.unilibre.datos.Color;
 import edu.unilibre.datos.Pago;
 import edu.unilibre.datos.Propietario;
 import edu.unilibre.gestion.GestorParqueadero;
@@ -33,8 +34,10 @@ public class Ventana {
                         System.out.println("Ingrese el serial de la bicicleta");
                         int serial = teclado.nextInt();
                         teclado.nextLine();
-                        System.out.println("Ingrese el color de la bicicleta");
-                        String color = teclado.nextLine();
+                        gestor.listarColores();
+                        System.out.println("Seleccione el color de la bicicleta");
+                        Color color = gestor.seleccionarColor(teclado.nextInt());
+                        teclado.nextLine();
 
                         System.out.println("Ingrese su nombre");
                         String nombre = teclado.nextLine();

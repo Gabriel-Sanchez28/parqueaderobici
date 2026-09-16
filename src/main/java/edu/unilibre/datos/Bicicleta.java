@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 
 public class Bicicleta {
     private int serial;
-    private String color;
+    private Color color;
     private Propietario idPropietario;
     private LocalDateTime horaEntrada;
 
@@ -12,7 +12,7 @@ public class Bicicleta {
         return serial;
     }
 
-    public String recibirColor() {
+    public Color recibirColor() {
         return color;
     }
 
@@ -29,7 +29,7 @@ public class Bicicleta {
         this.serial = serial;
     }
 
-    public void modificarColor(String color) {
+    public void modificarColor(Color color) {
         this.color = color;
     }
 
@@ -38,7 +38,7 @@ public class Bicicleta {
     }
 
 
-    public Bicicleta (int serial, String color, Propietario idpropietario, LocalDateTime horaEntrada){
+    public Bicicleta (int serial, Color color, Propietario idpropietario, LocalDateTime horaEntrada){
         this.serial = serial;
         this.color = color;
         this.idPropietario = idpropietario;
