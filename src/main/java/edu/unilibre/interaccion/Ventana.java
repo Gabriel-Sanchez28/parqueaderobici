@@ -70,10 +70,11 @@ public class Ventana {
                         Pago pago = gestor.seleccionarPago(teclado.nextInt());
 
                         RegistroPago sacar = gestor.registrarSalida(idRegistrada, pago);
-                        sacar.imprimirFactura();
                         if (sacar == null) {
                             System.out.println("Ocurrio un error, verifica los datos ingresados");
+                            break;
                         }
+                        sacar.imprimirFactura();
                         for (int i = 5; i>=0; i--){
                             // \r vuelve al inicio de la línea y sobreescribe lo que estaba antes
                             System.out.print("\rVolviendo al menu inicial en " + i);

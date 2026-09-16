@@ -53,7 +53,7 @@ public class GestorParqueadero {
     public RegistroPago registrarSalida(int idpropietario, Pago pago) {
         horaSalida = LocalDateTime.now();
         RegistroPago registro = null;
-
+        boolean bicicletaEncontrada = false;
         //validacion de parametros
         if (idpropietario <= 0){
             System.out.println("Ingrese una identificacion valida");
@@ -77,14 +77,21 @@ public class GestorParqueadero {
                     long minutosTotales = duracion.toMinutes();
 
                     double valorPagar = minutosTotales * tarifa;
-                    registro =new RegistroPago(listaBicicletas[i].recibirSerial(), listaBicicletas[i].recibirColor(), listaBicicletas[i].recibirIdpropietario().recibirNombre(), listaBicicletas[i].recibirIdpropietario().recibirIdentificacion(), horaEntrada, horaSalida, pago, valorPagar);
+                    registro =new RegistroPago(listaBicicletas[i].recibirSerial(), listaBicicletas[i].recibirColor(),
+                            listaBicicletas[i].recibirIdpropietario().recibirNombre(), listaBicicletas[i].recibirIdpropietario().recibirIdentificacion(),
+                            horaEntrada, horaSalida, pago, valorPagar);
 
                     bicicletasActivas--;
                     listaBicicletas[i] = null;
                     totalIngresos = totalIngresos + valorPagar;
+                    bicicletaEncontrada=true;
                     return  registro;
                 }
             }
+        }
+        if (!bicicletaEncontrada){
+            System.out.println("No se encontro ninguna bicicleta.");
+            return registro;
         }
         return registro;
     }

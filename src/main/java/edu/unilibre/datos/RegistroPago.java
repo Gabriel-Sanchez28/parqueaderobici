@@ -2,6 +2,7 @@ package edu.unilibre.datos;
 
 import edu.unilibre.datos.Propietario;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class RegistroPago {
     private int idPropietario;
@@ -68,14 +69,14 @@ public class RegistroPago {
     }
 
     public void imprimirFactura() {
-
+            DateTimeFormatter formato = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
             System.out.println("\n-------------------------------------------------");
             System.out.println("|              FACTURA DE PARQUEADERO           |");
             System.out.println("-------------------------------------------------");
             System.out.println("Nombre Propietario : " + recibirNombre());
             System.out.println("Identificación     : " + serial);
-            System.out.println("Hora de Entrada    : " + recibirHoraEntrada());
-            System.out.println("Hora de Salida     : " + recibirHoraSalida());
+            System.out.println("Hora de Entrada    : " + recibirHoraEntrada().format(formato));
+            System.out.println("Hora de Salida     : " + recibirHoraSalida().format(formato));
             System.out.println("Método de Pago     : " + recibirTipoPago());
             System.out.println("Valor a Pagar      : $" + valorPagar);
             System.out.println("-------------------------------------------------");
