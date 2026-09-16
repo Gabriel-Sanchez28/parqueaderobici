@@ -77,17 +77,7 @@ public class GestorParqueadero {
                     long minutosTotales = duracion.toMinutes();
 
                     double valorPagar = minutosTotales * tarifa;
-                    registro =new RegistroPago(idPropietario, horaEntrada, horaSalida, pago, valorPagar);
-                    /*System.out.println("La biccileta se registro correctamente");
-                    System.out.println("-------- Factura ----------");
-                    //System.out.println("Propietario " + listaBicicletas[i].recibirIdpropietario().recibirNombre());
-                    System.out.println("Identificacion " + listaBicicletas[i].recibirIdpropietario().recibirIdentificacion());
-                    System.out.println("Serial " + listaBicicletas[i].recibirSerial());
-                    System.out.println("Color " + listaBicicletas[i].recibirColor());
-                    System.out.println("Metodo de pago: " + pago);
-                    System.out.println("Duracion " + minutosTotales);
-                    System.out.println("El valor a pagar es de: " + valorPagar);
-                    System.out.println("----------------------------------");*/
+                    registro =new RegistroPago(listaBicicletas[i].recibirSerial(), listaBicicletas[i].recibirColor(), listaBicicletas[i].recibirIdpropietario().recibirNombre(), listaBicicletas[i].recibirIdpropietario().recibirIdentificacion(), horaEntrada, horaSalida, pago, valorPagar);
 
                     bicicletasActivas--;
                     listaBicicletas[i] = null;

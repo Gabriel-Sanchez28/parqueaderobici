@@ -1,15 +1,20 @@
 package edu.unilibre.datos;
 
+import edu.unilibre.datos.Propietario;
 import java.time.LocalDateTime;
 
 public class RegistroPago {
-    private Propietario idPropietario;
+    private int idPropietario;
     private LocalDateTime horaSalida;
     private LocalDateTime horaEntrada;
+    private int serial;
+    private Color color;
+    private String nombre;
     private Pago tipoPago;
     private double valorPagar;
 
-    public Propietario recibirIdPropietario() {
+
+    public int recibirIdPropietario() {
         return idPropietario;
     }
 
@@ -21,6 +26,18 @@ public class RegistroPago {
         return horaEntrada;
     }
 
+    public int recibiSerial() {
+        return serial;
+    }
+
+    public Color recibirColor() {
+        return color;
+    }
+
+    public String recibirNombre() {
+        return nombre;
+    }
+
     public Pago recibirTipoPago() {
         return tipoPago;
     }
@@ -30,7 +47,7 @@ public class RegistroPago {
     }
 
 
-    public void modificarIdPropietario(Propietario idPropietario) {
+    public void modificarIdPropietario(int idPropietario) {
         this.idPropietario = idPropietario;
     }
 
@@ -50,11 +67,28 @@ public class RegistroPago {
         this.valorPagar = valorPagar;
     }
 
+    public void imprimirFactura() {
 
-    public RegistroPago(Propietario idPropietario, LocalDateTime horaSalida, LocalDateTime horaEntrada, Pago tipoPago, double valorPagar) {
-        this.idPropietario = idPropietario;
-        this.horaSalida = horaSalida;
+            System.out.println("\n-------------------------------------------------");
+            System.out.println("|              FACTURA DE PARQUEADERO           |");
+            System.out.println("-------------------------------------------------");
+            System.out.println("Nombre Propietario : " + recibirNombre());
+            System.out.println("Identificación     : " + serial);
+            System.out.println("Hora de Entrada    : " + recibirHoraEntrada());
+            System.out.println("Hora de Salida     : " + recibirHoraSalida());
+            System.out.println("Método de Pago     : " + recibirTipoPago());
+            System.out.println("Valor a Pagar      : $" + valorPagar);
+            System.out.println("-------------------------------------------------");
+            System.out.println("¡Bicicleta retirada y registrada con éxito!");
+            System.out.println("-------------------------------------------------\n");
+
+    }
+    public RegistroPago(int serial, Color color,String nombre, int idPropietario, LocalDateTime horaEntrada, LocalDateTime horaSalida, Pago tipoPago, double valorPagar) {
+        this.serial = serial;
+        this.color = color;
+        this.nombre = nombre;
         this.horaEntrada = horaEntrada;
+        this.horaSalida = horaSalida;
         this.tipoPago = tipoPago;
         this.valorPagar = valorPagar;
     }

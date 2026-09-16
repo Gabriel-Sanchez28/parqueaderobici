@@ -1,8 +1,8 @@
 package edu.unilibre.interaccion;
 import edu.unilibre.datos.Color;
 import edu.unilibre.datos.Pago;
-import edu.unilibre.datos.Propietario;
 import edu.unilibre.datos.RegistroPago;
+import edu.unilibre.datos.Propietario;
 import edu.unilibre.gestion.GestorParqueadero;
 import java.util.Scanner;
 
@@ -70,6 +70,7 @@ public class Ventana {
                         Pago pago = gestor.seleccionarPago(teclado.nextInt());
 
                         RegistroPago sacar = gestor.registrarSalida(idRegistrada, pago);
+                        sacar.imprimirFactura();
                         if (sacar == null) {
                             System.out.println("Ocurrio un error, verifica los datos ingresados");
                         }
