@@ -21,7 +21,7 @@ class GestorParqueaderoTest {
         // Se crea un gestor totalmente nuevo y limpio antes de cada prueba
         servicio = new GestorParqueadero();
     }
-
+    //
     //adicionar bicicleta con espacios libre
     @Test
     void adicionarBicicletaLibreTest() {
@@ -38,6 +38,15 @@ class GestorParqueaderoTest {
         assertEquals(false, resultado2, "el color debe estar nulo");
         boolean resultado4 = servicio.adicionarBicicleta(123, Color.AZUL, 0);
         assertEquals(false, resultado4, "la identificacion del propietario debe tener datos erroneos");
+    }
+
+    @Test
+    void adicionarBicicletaRepetidaTest(){
+        boolean resultado = servicio.adicionarBicicleta(123, Color.AZUL, 123);
+        boolean resultado2 = servicio.adicionarBicicleta(123, Color.AZUL, 122);
+        assertFalse(resultado2, "El serial deberia estar repetido");
+        boolean resultado3 = servicio.adicionarBicicleta(1234, Color.AZUL, 123);
+        assertFalse(resultado3, "El id deberia estar repetido");
     }
 
     //adicionar bicicleta con parqueadero lleno
@@ -102,6 +111,13 @@ class GestorParqueaderoTest {
         assertDoesNotThrow(() -> {
             this.servicio.metodoPago();
         }, "El método de opciones de pago debe ejecutarse sin fallar");
+    }
+
+    @Test
+    void listaColoresTest(){
+        assertDoesNotThrow(() -> {
+            this.servicio.listarColores();
+        }, "La lista de colores debe ejecutarse sin fallar");
     }
 
     @Test
