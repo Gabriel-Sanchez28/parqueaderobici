@@ -79,8 +79,6 @@ public class GestorParqueadero {
         for (int i = 0; i < listaBicicletas.length; i++) {
             if (listaBicicletas[i] != null) {
                 if (listaBicicletas[i].recibirIdpropietario().recibirIdentificacion() == idpropietario) {
-                    Bicicleta salida = listaBicicletas[i];
-                    Propietario idPropietario = listaBicicletas[i].recibirIdpropietario();
                     //contenedor de hora entrada verdadero
                     LocalDateTime horaEntrada = listaBicicletas[i].recibirHoraEntrada();
                     //hora de entrada prueba
@@ -96,7 +94,7 @@ public class GestorParqueadero {
                     bicicletasActivas--;
                     listaBicicletas[i] = null;
                     totalIngresos = totalIngresos + valorPagar;
-                    bicicletaEncontrada=true;
+                    //bicicletaEncontrada=true;
                     return  registro;
                 }
             }
