@@ -173,7 +173,7 @@ public class ventanarpueba extends JFrame {
 
         // Misma logica de negocio que en Ventana.java
         Propietario propietario = new Propietario(id, nombre);
-        boolean agregar = gestor.adicionarBicicleta(serial, color, propietario.recibirIdentificacion());
+        boolean agregar = gestor.adicionarBicicleta(serial, color, propietario.recibirIdentificacion(), propietario.recibirNombre());
 
         if (!agregar) {
             JOptionPane.showMessageDialog(this, "!No se pudo agregar la bicicleta, intenta de nuevo¡",

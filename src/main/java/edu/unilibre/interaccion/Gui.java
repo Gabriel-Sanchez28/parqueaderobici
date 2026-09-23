@@ -14,7 +14,7 @@ public class Gui extends JFrame {
     private JPanel Ventana;
     private JLabel titulo;
     private JLabel subTitulo;
-    private JButton RegistrarBicicleta;
+    private JButton RegistrarBicicletaButton;
     private JButton sacarBicicletaButton;
     private JButton generarReporteButton;
     private JButton salida;
@@ -48,24 +48,25 @@ public class Gui extends JFrame {
     private static final String SACAR = "SACAR";
     private static final String REPORTE = "REPORTE";
 
+
     public Gui() {
         super("Menú Parqueadero de Bicicletas");
 
-        // 1. Primero construimos toda la interfaz visual
+        // Construccion de toda la interfaz visual
         construirCartasDeReferencia();
 
-        // 2. Configuramos la ventana principal
+        // Configuracion la ventana principal
         setContentPane(Ventana);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(600, 400); // Un poco más grande para que se vea bien
+        setSize(600, 400);
         setLocationRelativeTo(null);
 
-        // 3. Inicializamos los modelos de los combos (ya existen porque se crearon en el paso 1)
-        comboColor.setModel(new DefaultComboBoxModel<>(Color.values()));
-        comboPago.setModel(new DefaultComboBoxModel<>(Pago.values()));
+        // Inicializamos las listas
+        comboColor.setModel(new DefaultComboBoxModel(Color.values()));
+        comboPago.setModel(new DefaultComboBoxModel(Pago.values()));
 
-        // 4. Navegación entre cartas
-        RegistrarBicicleta.addActionListener(e -> mostrarCarta(REGISTRAR));
+        // Navegación entre cartas
+        RegistrarBicicletaButton.addActionListener(e -> mostrarCarta(REGISTRAR));
         sacarBicicletaButton.addActionListener(e -> mostrarCarta(SACAR));
         generarReporteButton.addActionListener(e -> {
             areaReporte.setText(gestor.generarReporte());
@@ -81,11 +82,12 @@ public class Gui extends JFrame {
         btnVolverDeSacar.addActionListener(e -> mostrarCarta(MENU));
         btnVolverDeReporte.addActionListener(e -> mostrarCarta(MENU));
 
-        // 5. Lógica de negocio
+        // confirmacion accion
         btnConfirmarRegistro.addActionListener(e -> registrarBicicleta());
         btnConfirmarSalida.addActionListener(e -> sacarBicicleta());
     }
 
+    //cambio de carta
     private void mostrarCarta(String nombre) {
         CardLayout cl = (CardLayout) Ventana.getLayout();
         cl.show(Ventana, nombre);
@@ -115,7 +117,7 @@ public class Gui extends JFrame {
         }
 
         Propietario propietario = new Propietario(id, nombre);
-        boolean agregar = gestor.adicionarBicicleta(serial, color, propietario.recibirIdentificacion());
+        boolean agregar = gestor.adicionarBicicleta(serial, color, propietario.recibirIdentificacion(), propietario.recibirNombre());
 
         if (!agregar) {
             JOptionPane.showMessageDialog(this, "¡No se pudo agregar la bicicleta, intenta de nuevo!",
@@ -200,10 +202,10 @@ public class Gui extends JFrame {
         subTitulo.setAlignmentX(Component.CENTER_ALIGNMENT);
         subTitulo.setBorder(BorderFactory.createEmptyBorder(10, 0, 40, 0));
 
-        RegistrarBicicleta = new JButton("1. Registrar una bicicleta");
-        RegistrarBicicleta.setAlignmentX(Component.CENTER_ALIGNMENT);
-        RegistrarBicicleta.setMaximumSize(new Dimension(350, 45));
-        RegistrarBicicleta.setFont(new Font("Arial", Font.PLAIN, 16));
+        RegistrarBicicletaButton = new JButton("1. Registrar una bicicleta");
+        RegistrarBicicletaButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        RegistrarBicicletaButton.setMaximumSize(new Dimension(350, 45));
+        RegistrarBicicletaButton.setFont(new Font("Arial", Font.PLAIN, 16));
 
         sacarBicicletaButton = new JButton("2. Sacar bicicleta");
         sacarBicicletaButton.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -223,7 +225,7 @@ public class Gui extends JFrame {
         panelMenu.add(titulo);
         panelMenu.add(subTitulo);
         panelMenu.add(Box.createRigidArea(new Dimension(0, 10)));
-        panelMenu.add(RegistrarBicicleta);
+        panelMenu.add(RegistrarBicicletaButton);
         panelMenu.add(Box.createRigidArea(new Dimension(0, 15)));
         panelMenu.add(sacarBicicletaButton);
         panelMenu.add(Box.createRigidArea(new Dimension(0, 15)));
