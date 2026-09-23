@@ -25,27 +25,27 @@ class GestorParqueaderoTest {
     //adicionar bicicleta con espacios libre
     @Test
     void adicionarBicicletaLibreTest() {
-        boolean resultado = servicio.adicionarBicicleta(123, Color.AZUL, 123);
+        boolean resultado = servicio.adicionarBicicleta(123, Color.AZUL, 123, "Gabriel");
         assertEquals(true, resultado, "La bicleta no se pudo asignar");
     }
 
     //adicionar bicicleta con parametros nulos
     @Test
     void adicionarBicicletaNulosTest() {
-        boolean resultado = servicio.adicionarBicicleta(0, Color.AZUL, 123);
+        boolean resultado = servicio.adicionarBicicleta(0, Color.AZUL, 123, "Gabriel");
         assertEquals(false, resultado, "el serial debe tener datos erroneos");
-        boolean resultado2 = servicio.adicionarBicicleta(123, null, 123);
+        boolean resultado2 = servicio.adicionarBicicleta(123, null, 123, "Gabriel");
         assertEquals(false, resultado2, "el color debe estar nulo");
-        boolean resultado4 = servicio.adicionarBicicleta(123, Color.AZUL, 0);
+        boolean resultado4 = servicio.adicionarBicicleta(123, Color.AZUL, 0, "Gabriel");
         assertEquals(false, resultado4, "la identificacion del propietario debe tener datos erroneos");
     }
 
     @Test
     void adicionarBicicletaRepetidaTest(){
-        boolean resultado = servicio.adicionarBicicleta(123, Color.AZUL, 123);
-        boolean resultado2 = servicio.adicionarBicicleta(123, Color.AZUL, 122);
+        boolean resultado = servicio.adicionarBicicleta(123, Color.AZUL, 123, "Gabriel");
+        boolean resultado2 = servicio.adicionarBicicleta(123, Color.AZUL, 122, "Gabriel");
         assertFalse(resultado2, "El serial deberia estar repetido");
-        boolean resultado3 = servicio.adicionarBicicleta(1234, Color.AZUL, 123);
+        boolean resultado3 = servicio.adicionarBicicleta(1234, Color.AZUL, 123, "Gabriel");
         assertFalse(resultado3, "El id deberia estar repetido");
     }
 
@@ -54,11 +54,11 @@ class GestorParqueaderoTest {
     void adicionarBicicletaLlenoTest() {
         // Llenar exactamente los 20 cupos del parqueadero limpio
         for (int i = 0; i < 21; i++) {
-            servicio.adicionarBicicleta(i, Color.AZUL, 100 + i);
+            servicio.adicionarBicicleta(i, Color.AZUL, 100 + i, "Gabriel");
         }
 
         // Intentar agregar la bicicleta número 21
-        boolean resultado = servicio.adicionarBicicleta(999, Color.AZUL, 999);
+        boolean resultado = servicio.adicionarBicicleta(999, Color.AZUL, 999, "Gabriel");
 
         assertEquals(false,resultado, "El parqueadero debería estar lleno");
     }
@@ -68,7 +68,7 @@ class GestorParqueaderoTest {
     //public boolean registrarSalida(int idpropietario, double tarifa)
     void registrarSalidaTest(){
         //registro
-        this.servicio.adicionarBicicleta(124, Color.AZUL, 123);
+        this.servicio.adicionarBicicleta(124, Color.AZUL, 123, "Gabriel");
         RegistroPago resultado = this.servicio.registrarSalida(123, NEQUI);
         assertNotNull(resultado, "La cicla no esta registrada");
     }
@@ -88,7 +88,7 @@ class GestorParqueaderoTest {
     //sacar bicicleta id no coincidentes
     @Test
     void registrarSalidaIdNoCoincideTest() {
-        this.servicio.adicionarBicicleta(1, Color.AZUL, 123);
+        this.servicio.adicionarBicicleta(1, Color.AZUL, 123, "Gabriel");
 
         RegistroPago resultado = this.servicio.registrarSalida(999, NEQUI);
 
@@ -97,7 +97,7 @@ class GestorParqueaderoTest {
 
     @Test
     void generarReporteTest() {
-        servicio.adicionarBicicleta(102, Color.AZUL, 456);
+        servicio.adicionarBicicleta(102, Color.AZUL, 456, "Gabriel");
         this.servicio.registrarSalida(456, NEQUI);
         String reporte = servicio.generarReporte();
         System.out.println(reporte);

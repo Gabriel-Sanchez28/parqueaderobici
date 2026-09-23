@@ -22,6 +22,6 @@ public class Propietario {
 
     public Propietario (int identificacion, String nombre){
         this.identificacion = identificacion;
-        this.nombre = this.nombre;
+        this.nombre = nombre;
     }
 }

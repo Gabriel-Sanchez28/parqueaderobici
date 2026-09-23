@@ -15,7 +15,7 @@ public class GestorParqueadero {
     private LocalDateTime horaSalida;
 
     //registrar bicicleta
-    public boolean adicionarBicicleta(int serial, Color color, int idPropietario) {
+    public boolean adicionarBicicleta(int serial, Color color, int idPropietario, String nombrePropietario) {
         boolean registroBici = false;
         //verificacion datos ingresados
         if (bicicletasActivas >= cupos) {
@@ -47,7 +47,7 @@ public class GestorParqueadero {
 
         for (int i = 0; i < listaBicicletas.length; i++) {
             if (listaBicicletas[i] == null) {
-                Propietario propietario = new Propietario(idPropietario, null);
+                Propietario propietario = new Propietario(idPropietario, nombrePropietario);
                 LocalDateTime horaEntrada = LocalDateTime.now();
                 listaBicicletas[i] = new Bicicleta(serial, color, propietario, horaEntrada);
 
